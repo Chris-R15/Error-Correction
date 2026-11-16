@@ -17,7 +17,23 @@ def evenParity(bits):
         >>> evenParity('110001')
         False
     """
-    pass
+    
+    # Note: Most programmer's will drop the else to make it clear that the 
+    # function is returning something. Some languages don't like to have
+    # all the returns stuck in an if/else.
+   
+    if(bits.count('1') % 2 == 0):
+        return True
+    else:
+        return False
+
+   # if(bits.count('1') % 2 == 0):
+    #    return True
+
+     #   return False
+
+    # Here's the one line version equvalent to the above
+    # return bit.count('1') % 2 == 0
 
 def evenParityNoCount(bits):
     """
@@ -37,7 +53,14 @@ def evenParityNoCount(bits):
         >>> evenParityNoCount('110001')
         False
     """
-    pass
+
+    count = 0
+
+    for item in bits:
+        if item == '1':
+            count +=1
+
+    return count % 2 == 0
 
 def makeEvenParity(bits):
     """
@@ -57,7 +80,11 @@ def makeEvenParity(bits):
         >>> makeEvenParity('110001')
         '1100011'
     """
-    pass
+
+    if(evenParity(bits) == True):   # you can also take away the "True" because it is a bit redundant
+        return bits +'0'
+
+    return bits + '1'
 
 def checksum(word):
     """
@@ -77,7 +104,13 @@ def checksum(word):
         >>> checksum('snow')
         'snowp'
     """
-    pass
+
+    sum = 0
+
+    for character in word:
+        sum = sum + ord(character) - 97
+
+    return word + chr(sum % 26 + 97)
 
 def checksumCheck(word):
     """
@@ -99,7 +132,10 @@ def checksumCheck(word):
         >>> checksumCheck('snowy')
         False
     """
-    pass
+
+    org_word = word[:-1]
+    return checksum(org_word) == word
+
 
 def hamming(bit_seq1: str, bit_seq2: str) -> int:
     """
@@ -120,5 +156,28 @@ def hamming(bit_seq1: str, bit_seq2: str) -> int:
         >>> hamming('011100110001', '011000110101')
         2
     """
-    pass
 
+    diff_count = 0
+    for index in range(len(bit_seq1)):
+        if bit_seq1[index] != bit_seq2[index]:
+            diff_count +=1
+    return diff_count
+
+if __name__ == "__main__":
+    even_bit_seq = "110101"
+    odd_bit_seq = "110001"
+   
+    print(evenParity(even_bit_seq))
+    print(evenParity(odd_bit_seq))
+    
+    print(evenParityNoCount(even_bit_seq))
+    print(evenParityNoCount(odd_bit_seq))
+    
+    print(makeEvenParity(even_bit_seq))
+    print(makeEvenParity(odd_bit_seq))
+
+    print(checksum("So"))
+
+    print(checksumCheck("hellov"))
+
+    print(hamming('011100110001', '011000110101'))

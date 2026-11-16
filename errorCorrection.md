@@ -6,6 +6,8 @@ When bits are sent across a network, they are sometimes corrupted by interferenc
 
 a. Parity can only detect very simple errors. Give an example of an error that cannot be detected by an even parity scheme.
 
+    All the number are already even and no matter how you change the 1s and 0s it won't be able to detect it. If you have a 0 at the end there is an even number. If end at 1 there is an odd number.
+
 a. Write a function ```evenParity(bits)``` that uses the ```count``` method to return ```True``` if the string bits has even parity and ```False``` otherwise. For example, ```evenParity('110101')``` should return ```True``` and ```evenParity('110001')``` should return ```False```.
 
 a. Now write the ```evenParity``` function without using the ```count``` method.
